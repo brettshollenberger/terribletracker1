@@ -21,5 +21,14 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:developer) { FactoryGirl.build(:developer) }
+  let(:admin)     { FactoryGirl.build(:admin) }
+  let(:client)    { FactoryGirl.build(:client) }
+
+  it "is valid" do
+    expect(developer).to be_valid
+    expect(admin).to be_valid
+    expect(client).to be_valid
+  end
+
 end

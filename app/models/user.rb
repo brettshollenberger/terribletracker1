@@ -34,6 +34,13 @@ class User < ActiveRecord::Base
   }
 
   has_many :user_stories, {
-    inverse_of: :user
+    foreign_key: "developer_id",
+    inverse_of: :developer
+  }
+
+  has_many :projects, {
+    foreign_key: "client_id",
+    dependent: :destroy,
+    inverse_of: :client
   }
 end

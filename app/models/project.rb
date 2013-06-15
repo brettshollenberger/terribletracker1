@@ -15,7 +15,7 @@
 class Project < ActiveRecord::Base
   attr_accessible :budget, :client_id, :due_date, :title, :weekly_rate
 
-  validates :title, :client, :client_id, {
+  validates :title, :client, :budget, :weekly_rate, {
     presence: true,
   }
 
@@ -30,5 +30,7 @@ class Project < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
-  belongs_to :client
+  belongs_to :client, {
+    class_name: "User"
+  }
 end

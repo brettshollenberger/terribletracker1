@@ -27,13 +27,22 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "yoda#{n}@dagobah.com" }
     password "foobar29"
-    role "user"
-    factory :admin do
+
+    trait :developer do
+      role "developer"
+    end
+
+    trait :admin do
       role "admin"
     end
-    factory :client do
+
+    trait :client do
       role "client"
     end
+
+    factory :developer, traits: [:developer]
+    factory :admin, traits: [:admin]
+    factory :client, traits: [:client]
   end
 
   factory :user_story do
@@ -42,7 +51,7 @@ FactoryGirl.define do
     estimate ".5"
     complexity "1"
     project
-    user
+    developer
   end
 
   factory :project do
