@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="span12">
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-error" %>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    <h1>Edit Project</h1>
+    <%= render 'edit_project_form' %>
+
+    <%= link_to "Back", projects_path %>
+  </div>
+</div>
