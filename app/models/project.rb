@@ -33,4 +33,6 @@ class Project < ActiveRecord::Base
   belongs_to :client, {
     class_name: "User"
   }
+
+  accepts_nested_attributes_for :user_stories
 end

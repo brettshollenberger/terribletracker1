@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="span12">
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-error" %>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    <div class="userstorycontext">
+      <%= link_to "Edit", edit_project_user_story_path(@project, @user_story) %>
+      <%= link_to "Delete", project_user_story_path(@project, @user_story), method: :delete %>
+    </div>
+    <h1><%= @project.title %></h1>
+    <p><strong>Client:</strong> <%= @project.client.email %></p>
+    <p><strong>Budget:</strong> <%= @project.budget %></p>
+    <p><strong>Weekly Rate:</strong> <%= @project.weekly_rate %></p>
+      <table class="table table-striped">
+        <thead>
+          <th>Title</th>
+          <th>Story</th>
+          <th>Complexity</th>
+          <th>Estimate</th>
+          <th>Developer</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @user_story.title %></td>
+            <td><%= @user_story.content %></td>
+            <td><%= @user_story.complexity %></td>
+            <td><%= @user_story.estimate %></td>
+            <td><%= @user_story.developer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    <br>
+    <%= link_to "Back", project_path(@project) %>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.userstorycontext {
+  text-align: center;
+  padding: 2px;
+  border-radius: 20px;
+  border: 5px solid #464797;
+  width: 200px;
+  float:right;
+}
+
+.userstorycontext a {
+  font-family: ;
+  color: #464797;
+  margin: 0 15px 0 0;
+}
+
+.userstorycontext a:last-child {
+  margin: 0px;
+}
