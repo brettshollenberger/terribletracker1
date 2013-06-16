@@ -7,6 +7,10 @@ Terribletracker::Application.routes.draw do
 
   root to: "projects#index"
 
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
