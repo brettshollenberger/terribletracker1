@@ -14,6 +14,9 @@ Terribletracker::Application.routes.draw do
 
   resources :story_owners
 
+  match "/new/client", to: "clients#new"
+  match "/create/client", to: "clients#create"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

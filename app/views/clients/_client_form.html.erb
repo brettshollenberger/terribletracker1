@@ -1,0 +1,14 @@
+<%= form_for @client,
+  :url => url_for(:controller => 'clients', :action => 'create') do |f| %>
+
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.hidden_field :project_id, { value: @project.id } %>
+  <br>
+  <%= f.submit %>
+<% end %>

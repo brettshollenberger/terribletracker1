@@ -10,7 +10,11 @@
       </div>
     <% end %>
     <h1><%= @project.title %></h1>
-    <p><strong>Client:</strong> TODO: ADD CLIENT</p>
+    <% if @project.client == nil %>
+      <p><strong>Client:</strong> <%= link_to "Add Client", new_client_path(@project) %></p>
+    <% else %>
+      <p><strong>Client:</strong> <%= @project.client.email %></p>
+    <% end %>
     <p><strong>Budget:</strong> <%= @project.budget %></p>
     <p><strong>Weekly Rate:</strong> <%= @project.weekly_rate %></p>
     <% if @project.user_stories.length > 0 %>
