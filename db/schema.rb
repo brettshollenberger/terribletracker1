@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617124455) do
+ActiveRecord::Schema.define(:version => 20130617154758) do
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -26,9 +26,15 @@ ActiveRecord::Schema.define(:version => 20130617124455) do
     t.integer  "budget"
     t.integer  "weekly_rate"
     t.datetime "due_date"
-    t.integer  "client_id",   :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "story_owners", :force => true do |t|
+    t.integer  "user_id",       :null => false
+    t.integer  "user_story_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "user_stories", :force => true do |t|
@@ -39,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20130617124455) do
     t.integer  "complexity"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
-    t.integer  "developer_id",                          :null => false
     t.string   "story_status", :default => "Unstarted"
   end
 
