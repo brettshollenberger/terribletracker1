@@ -50,7 +50,7 @@
           <%= f.hidden_field :project, { value: @project.id } %>
           <%= f.hidden_field :user_id, { value: current_user.id } %>
           <%= f.hidden_field :user_story_id, { value: user_story.id } %>
-          <%= f.submit "No one assigned", { :class => "badge badge-warning" } %>
+          <%= f.submit "No one assigned", { :class => "badge" } %>
         <% end %>
       </td>
     <% end %>
