@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
 
   def index
-    @projects = current_user.projects
+    @projects = Project.all
   end
 
   def new
@@ -10,9 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @client = User.where(email: params[:project][:client]).first
-    params[:project].delete(:client)
-    @project = @client.projects.build(params[:project])
+    @project = Project.new(params[:project])
 
     if @project.save
       redirect_to @project, notice: "Project successfully created"

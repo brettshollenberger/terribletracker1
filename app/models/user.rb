@@ -13,7 +13,6 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  role                   :string(255)      default("user")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -26,26 +25,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  validates :role, {
-    presence: true
-  }
-
-  has_many :user_stories, {
-    foreign_key: "developer_id",
-    inverse_of: :developer
-  }
+  has_many :memberships
 
   has_many :projects, {
-    foreign_key: "client_id",
-    dependent: :destroy,
-    inverse_of: :client
+    through: :memberships
   }
 
-  has_many :memberships, {
-    dependent: :destroy,
-    inverse_of: :user
+  has_many :story_owners
+
+  has_many :user_stories, {
+    through: :story_owners
   }
+
 end

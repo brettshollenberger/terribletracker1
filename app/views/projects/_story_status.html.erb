@@ -1,0 +1,47 @@
+<% @user_stories.each do |user_story| %>
+  <tr>
+    <% if user_story.story_status == "Unstarted" %>
+
+      <td>
+        <%= form_for [@project, user_story], { :class => "story_status" } do |f| %>
+
+          <%= f.hidden_field "story_status", { value: "Started" } %>
+          <%= f.submit "#{user_story.story_status}", { :class => "badge"} %>
+        <% end %>
+      </td>
+
+    <% elsif user_story.story_status == "Started" %>
+
+      <td>
+        <%= form_for [@project, user_story], { :class => "story_status" } do |f| %>
+
+          <%= f.hidden_field "story_status", { value: "Code Review" } %>
+          <%= f.submit "#{user_story.story_status}", { :class => "badge badge-info"} %>
+        <% end %>
+      </td>
+
+    <% elsif user_story.story_status == "Code Review" %>
+
+       <td>
+        <%= form_for [@project, user_story], { :class => "story_status" } do |f| %>
+
+          <%= f.hidden_field "story_status", { value: "Completed" } %>
+          <%= f.submit "#{user_story.story_status}", { :class => "badge badge-warning"} %>
+        <% end %>
+      </td>
+
+    <% elsif user_story.story_status == "Completed" %>
+
+      <td><span class="badge badge-success complete">
+        <%= user_story.story_status %>
+      </td></span>
+
+    <% end %>
+
+    <td><%= link_to "#{user_story.title}", project_user_story_path(@project, user_story) %></td>
+    <td><%= user_story.content %></td>
+    <td><%= user_story.complexity %></td>
+    <td><%= user_story.estimate %></td>
+    <td>TODO: ADD DEVELOPERS</td>
+  </tr>
+<% end %>

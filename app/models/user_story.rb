@@ -10,22 +10,25 @@
 #  complexity   :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  developer_id :integer          not null
+#  story_status :string(255)      default("Unstarted")
 #
 
 class UserStory < ActiveRecord::Base
-  attr_accessible  :story_status, :complexity, :content, :estimate, :project_id, :title, :developer_id
+  attr_accessible  :story_status, :complexity, :content, :estimate, :project_id, :title
 
-  validates :title, :developer, :project, :content, :estimate, :complexity, :story_status, {
+  validates :title, :project, :content, :estimate, :complexity, :story_status, {
     presence: true
   }
 
-  validates :project_id, :developer_id, {
+  validates :project_id, {
     numericality: true
   }
 
   belongs_to :project
-  belongs_to :developer, {
-    class_name: "User"
+
+  has_many :story_owners
+
+  has_many :users, {
+    through: :story_owners
   }
 end

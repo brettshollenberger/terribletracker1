@@ -14,7 +14,7 @@
       <%= link_to "Delete", project_user_story_path(@project, @user_story), method: :delete %>
     </div>
     <h1><%= @project.title %></h1>
-    <p><strong>Client:</strong> <%= @project.client.email %></p>
+    <p><strong>Client:</strong> TODO: ADD CLIENT</p>
     <p><strong>Budget:</strong> <%= @project.budget %></p>
     <p><strong>Weekly Rate:</strong> <%= @project.weekly_rate %></p>
       <table class="table table-striped">
@@ -31,7 +31,7 @@
             <td><%= @user_story.content %></td>
             <td><%= @user_story.complexity %></td>
             <td><%= @user_story.estimate %></td>
-            <td><%= @user_story.developer.email %></td>
+            <td>TODO: ADD DEVELOPER</td>
           </tr>
         </tbody>
       </table>

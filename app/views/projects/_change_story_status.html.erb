@@ -1,0 +1,22 @@
+<% if user_story.story_status == "Unstarted" %>
+  <td>
+    <%= form_for [@project, user_story], { :class => "story_status" } do |f| %>
+
+      <%= f.hidden_field "story_status", { value: "Started" } %>
+      <%= f.submit "#{user_story.story_status}", { :class => "badge"} %>
+    <% end %>
+  </td>
+<% elsif user_story.story_status == "Started" %>
+  <td><span class="badge badge-info">
+    <%= user_story.story_status %>
+  </td></span>
+<% elsif user_story.story_status == "Code Review" %>
+  <td><span class="badge badge-warning">
+    <%= user_story.story_status %>
+  </td></span>
+<% elsif user_story.story_status == "Completed" %>
+  <td><span class="badge badge-success">
+    <%= user_story.story_status %>
+  </td></span>
+<% end %>
+

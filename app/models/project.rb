@@ -7,20 +7,15 @@
 #  budget      :integer
 #  weekly_rate :integer
 #  due_date    :datetime
-#  client_id   :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
 class Project < ActiveRecord::Base
-  attr_accessible :budget, :client_id, :due_date, :title, :weekly_rate
+  attr_accessible :budget, :due_date, :title, :weekly_rate
 
-  validates :title, :client, :budget, :weekly_rate, {
+  validates :title, :budget, :weekly_rate, {
     presence: true,
-  }
-
-  validates :client_id, {
-    numericality: true
   }
 
   has_many :user_stories, {
@@ -28,16 +23,16 @@ class Project < ActiveRecord::Base
     inverse_of: :project
   }
 
-  has_and_belongs_to_many :users
-
-  belongs_to :client, {
-    class_name: "User"
-  }
+  has_many :memberships
 
   accepts_nested_attributes_for :user_stories
 
-  has_many :memberships, {
-    dependent: :destroy,
-    inverse_of: :project
+  has_many :users, {
+    through: :memberships
   }
+
+  def client
+    self.memberships.each { |membership| return membership.user if membership.role == "client" }
+    return nil
+  end
 end

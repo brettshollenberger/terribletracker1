@@ -6,10 +6,7 @@ class UserStoriesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @developer = User.where(email: params[:user_story][:developer]).first
     @user_story = @project.user_stories.new
-    @user_story.developer = @developer
-    params[:user_story].delete(:developer)
     @user_story.update_attributes(params[:user_story])
 
     if @user_story.save
