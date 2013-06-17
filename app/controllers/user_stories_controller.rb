@@ -34,13 +34,17 @@ class UserStoriesController < ApplicationController
   def update
     @project = Project.find(params[:project_id])
     @user_story = UserStory.find(params[:id])
-
-    if @user_story.update_attributes(params[:user_story])
-      flash[:notice] = "User story updated"
-      redirect_to project_user_story_path(@project, @user_story)
+    if params[:user_story][:title].nil?
+      @user_story.update_attributes(params[:user_story])
+      redirect_to @project
     else
-      flash[:error] = "There was an error updating your user story"
-      redirect_to project_user_story_path(@project, @user_story)
+      if @user_story.update_attributes(params[:user_story])
+        flash[:notice] = "User story updated"
+        redirect_to project_user_story_path(@project, @user_story)
+      else
+        flash[:error] = "There was an error updating your user story"
+        redirect_to project_user_story_path(@project, @user_story)
+      end
     end
   end
 

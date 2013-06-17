@@ -14,9 +14,9 @@
 #
 
 class UserStory < ActiveRecord::Base
-  attr_accessible :complexity, :content, :estimate, :project_id, :title, :developer_id
+  attr_accessible  :story_status, :complexity, :content, :estimate, :project_id, :title, :developer_id
 
-  validates :title, :developer, :project, :content, :estimate, :complexity, {
+  validates :title, :developer, :project, :content, :estimate, :complexity, :story_status, {
     presence: true
   }
 

@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @user_stories = @project.user_stories.order("created_at DESC").all
   end
 
   def destroy
