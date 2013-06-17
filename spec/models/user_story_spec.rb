@@ -10,7 +10,7 @@
 #  complexity   :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  developer_id :integer          not null
+#  story_status :string(255)      default("Unstarted")
 #
 
 require 'spec_helper'
@@ -21,11 +21,6 @@ describe UserStory do
 
   it "is valid" do
     expect(user_story).to be_valid
-  end
-
-  it "is invalid without a user in a developer role" do
-    user_story.developer = client
-    expect(user_story).to_not be_valid
   end
 
   it "is invalid without a title" do

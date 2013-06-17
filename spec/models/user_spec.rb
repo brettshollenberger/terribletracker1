@@ -13,7 +13,6 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  role                   :string(255)      default("user")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -21,13 +20,13 @@
 require 'spec_helper'
 
 describe User do
-  let(:developer) { FactoryGirl.build(:developer) }
-  let(:admin)     { FactoryGirl.build(:admin) }
+  let(:collaborator) { FactoryGirl.build(:collaborator) }
+  let(:owner)     { FactoryGirl.build(:owner) }
   let(:client)    { FactoryGirl.build(:client) }
 
   it "is valid" do
-    expect(developer).to be_valid
-    expect(admin).to be_valid
+    expect(collaborator).to be_valid
+    expect(owner).to be_valid
     expect(client).to be_valid
   end
 
