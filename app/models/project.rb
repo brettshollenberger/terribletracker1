@@ -35,4 +35,9 @@ class Project < ActiveRecord::Base
   }
 
   accepts_nested_attributes_for :user_stories
+
+  has_many :memberships, {
+    dependent: :destroy,
+    inverse_of: :project
+  }
 end

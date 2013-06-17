@@ -43,4 +43,9 @@ class User < ActiveRecord::Base
     dependent: :destroy,
     inverse_of: :client
   }
+
+  has_many :memberships, {
+    dependent: :destroy,
+    inverse_of: :user
+  }
 end

@@ -27,22 +27,6 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "yoda#{n}@dagobah.com" }
     password "foobar29"
-
-    trait :developer do
-      role "developer"
-    end
-
-    trait :admin do
-      role "admin"
-    end
-
-    trait :client do
-      role "client"
-    end
-
-    factory :developer, traits: [:developer]
-    factory :admin, traits: [:admin]
-    factory :client, traits: [:client]
   end
 
   factory :user_story do
@@ -60,5 +44,26 @@ FactoryGirl.define do
     weekly_rate "2000"
     due_date = Time.now
     client
+  end
+
+  factory :membership do
+    user_id 1
+    project_id 1
+
+    trait :owner do
+      role "owner"
+    end
+
+    trait :developer do
+      role "developer"
+    end
+
+    trait :client do
+      role "client"
+    end
+
+    factory :owner, traits: [:owner]
+    factory :developer, traits: [:developer]
+    factory :client, traits: [:client]
   end
 end
