@@ -42,6 +42,17 @@
     <td><%= user_story.content %></td>
     <td><%= user_story.complexity %></td>
     <td><%= user_story.estimate %></td>
-    <td>TODO: ADD DEVELOPERS</td>
+    <% if user_story.users.length > 0 %>
+      <td><span class="badge badge-info"><%= user_story.users.first.email %></span></td>
+    <% else %>
+      <td>
+        <%= form_for @story_owner, { :class => "story_status" } do |f| %>
+          <%= f.hidden_field :project, { value: @project.id } %>
+          <%= f.hidden_field :user_id, { value: current_user.id } %>
+          <%= f.hidden_field :user_story_id, { value: user_story.id } %>
+          <%= f.submit "No one assigned", { :class => "badge badge-warning" } %>
+        <% end %>
+      </td>
+    <% end %>
   </tr>
 <% end %>

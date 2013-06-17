@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :project do
-    sequence(:title) { |n| "Turrible Tracka #{n}" }
+    title "Turrible Tracka"
     budget "1000000"
     weekly_rate "2000"
     due_date = Time.now

@@ -12,6 +12,8 @@ Terribletracker::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
   end
 
+  resources :story_owners
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
