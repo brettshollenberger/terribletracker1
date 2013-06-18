@@ -10,6 +10,7 @@ feature "editing projects" do
   background do
     @project = FactoryGirl.create(:project)
     user = FactoryGirl.create(:user)
+    membership = Membership.create(project: @project, user: user, role: "collaborator")
     login_as(user, :scope => :user)
     visit projects_path
   end

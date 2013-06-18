@@ -11,6 +11,7 @@ feature "deleting projects" do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     project = FactoryGirl.create(:project)
+    membership = Membership.create(project: project, user: user, role: "collaborator")
     visit projects_path
     click_link "Delete"
   end
