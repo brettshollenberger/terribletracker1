@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
-    @projects = Project.all
+    @user = current_user
+    @projects = @user.projects
   end
 
   def new
@@ -19,9 +21,18 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
-    @user_stories = @project.user_stories.order("created_at DESC").all
-    @story_owner = StoryOwner.new
+    begin
+      @user = current_user
+      @project = @user.projects.find(params[:id])
+
+      @user_stories = @project.user_stories.order("created_at DESC").all
+      @story_owner = StoryOwner.new
+    rescue
+      flash[:error] = "You don't have permission to access that project"
+      redirect_to projects_path
+    end
+
+
   end
 
   def destroy
