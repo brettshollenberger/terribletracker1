@@ -1,0 +1,11 @@
+<%= form_for @client,
+  :url => url_for(:controller => 'clients', :action => 'update') do |f| %>
+
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.hidden_field :id, { value: @client.id} %>
+  <%= f.hidden_field :project_id, { value: @project.id } %>
+  <br>
+  <%= f.submit %>
+<% end %>

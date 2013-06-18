@@ -11,6 +11,7 @@ feature "showing projects" do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     project = FactoryGirl.create(:project)
+    membership = Membership.create(project: project, user: user, role: "collaborator")
     visit project_path(project)
   end
 

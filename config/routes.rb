@@ -14,6 +14,13 @@ Terribletracker::Application.routes.draw do
 
   resources :story_owners
 
+  # get "clients/new", to: "clients#new"
+  # post "clients", to: "clients#create"
+  # get "clients/:id/edit", to: "clients#edit"
+  # put "clients/:id/", to: "client#update"
+
+  resources :clients
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

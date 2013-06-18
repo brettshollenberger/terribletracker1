@@ -10,6 +10,7 @@ feature "add user stories to projects" do
   background do
     user = FactoryGirl.create(:user)
     project = FactoryGirl.create(:project)
+    membership = Membership.create(project: project, user: user, role: "collaborator")
     login_as(user, :scope => :user)
     visit projects_path
   end

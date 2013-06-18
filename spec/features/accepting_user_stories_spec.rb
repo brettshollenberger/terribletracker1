@@ -11,6 +11,7 @@ feature "accepting user stories" do
     @user = FactoryGirl.create(:user)
     login_as(@user, :scope => :user)
     user_story = FactoryGirl.create(:user_story)
+    membership = Membership.create(project: user_story.project, user: @user, role: "collaborator")
     visit project_path(user_story.project)
   end
 
