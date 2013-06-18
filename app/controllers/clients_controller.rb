@@ -10,7 +10,6 @@ class ClientsController < ApplicationController
     params[:user].delete(:project_id)
     @user = User.new(params[:user])
 
-    binding.pry
     if @user.save
       @membership = Membership.new(project_id: @project.id, role: "client", user_id: @user.id)
       @membership.save
@@ -18,6 +17,25 @@ class ClientsController < ApplicationController
       redirect_to @project
     else
       flash[:error] = "There was an error creating your client"
+      redirect_to @project
+    end
+  end
+
+  def edit
+    @project = Project.find(params[:id])
+    @client = @project.client
+  end
+
+  def update
+    @project = Project.find(params[:user][:project_id])
+    params[:user].delete(:project_id)
+    @user = User.find(params[:user][:id])
+
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Client updated"
+      redirect_to @project
+    else
+      flash[:error] = "There was an error updating your client"
       redirect_to @project
     end
   end

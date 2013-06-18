@@ -19,4 +19,10 @@ class Membership < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :project
+
+  def self.clients
+    clients = []
+    self.each { |membership| clients.push(membership.user) if membership.role == "client" }
+    return clients
+  end
 end

@@ -13,7 +13,7 @@
     <% if @project.client == nil %>
       <p><strong>Client:</strong> <%= link_to "Add Client", new_client_path(@project) %></p>
     <% else %>
-      <p><strong>Client:</strong> <%= @project.client.email %></p>
+      <p><strong>Client:</strong> <%= link_to "#{@project.client.email}", edit_client_path(@project) %></p>
     <% end %>
     <p><strong>Budget:</strong> <%= @project.budget %></p>
     <p><strong>Weekly Rate:</strong> <%= @project.weekly_rate %></p>
