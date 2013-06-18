@@ -14,6 +14,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
 
     if @project.save
+      @membership = current_user.memberships.build(project: @project, role: "owner")
+      @membership.save
       redirect_to @project, notice: "Project successfully created"
     else
       redirect_to new_project_path, notice: "There was an error creating your project"

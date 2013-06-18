@@ -21,7 +21,11 @@
         <% @projects.each do |project| %>
           <tr>
             <td><%= link_to "#{project.title}", project_path(project) %></td>
-            <td><%= link_to "#{project.client.email}", edit_client_path(project) %></td>
+            <% if project.client %>
+              <td><%= link_to "#{project.client.email}", edit_client_path(project) %></td>
+            <% else %>
+              <td><%= link_to "Add client", new_client_path(project) %></td>
+            <% end %>
             <td><%= project.budget %></td>
             <td><%= project.weekly_rate %></td>
             <td><%= link_to "Edit", edit_project_path(project) %></td>
